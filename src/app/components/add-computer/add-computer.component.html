@@ -1,0 +1,51 @@
+<div class="border-black  container">
+  <h2 class="text-white">Ajouter un nouvel ordianteur </h2>
+  <form #computerForm="ngForm" (ngSubmit)="addComputer()">
+    <div class="form-group">
+      <label for="modele" class="h3 text-primary"> Modèle </label>
+      <input  class="form-control" type="text" id="modele" name="modele" required [(ngModel)]= 'computerToAdd.modele' #modele="ngModel">
+      <div [hidden]="modele.valid" class="alert alert-danger"> Le modèle est requis </div>
+   </div>
+   <div class="form-group">
+    <label class="h3 text-primary"> Marque </label>
+    <ng-container *ngFor="let marque of marques">
+       <div>
+            <input type="radio" id="inputRadio-{{marque}}" #marque="ngModel" name="marque-{{marque}}" [value]="marque" required [(ngModel)]="computerToAdd.marque">
+            <label for="inputRadio-{{marque}}"> {{marque}} </label>
+       </div>
+    </ng-container>
+  </div>
+
+<div class="form-group">
+  <label for="type" class="h3 text-primary"> Le type d'ordinateur  </label>
+  <select class="form-control"  id="type" name="type" required [(ngModel)]= 'computerToAdd.type' #type="ngModel">
+    <option *ngFor="let choice of types" [ngValue]="choice" >{{choice}} </option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label class="h3 text-primary"> Catégorie </label>
+  <ng-container *ngFor="let categorie of categories">
+     <div>
+          <input type="radio" id="inputRadio-{{categorie}}" #categorie="ngModel" name="categorie-{{categorie}}" [value]="categorie" required [(ngModel)]="computerToAdd.categorie">
+          <label for="inputRadio-{{categorie}}"> {{categorie}} </label>
+     </div>
+  </ng-container>
+</div>
+
+<div class="form-group">
+  <label for="prixAchat" class="h3 text-primary"> Le Prix d'achat (en €) </label>
+  <input  class="form-control" type="number" id="prixAchat" name="prixAchat" required [(ngModel)]= 'computerToAdd.prixAchat' #prixAchat="ngModel">
+  <div [hidden]="prixAchat.valid" class="alert alert-danger"> Le Prix d'achat est € est requis  </div>
+</div>
+
+<div class="form-group">
+  <label for="prixVente" class="h3 text-primary"> Le Prix de vente (en €) </label>
+  <input  class="form-control" type="number" id="prixVente" name="prixVente" required [(ngModel)]= 'computerToAdd.prixVente' #prixVente="ngModel">
+  <div [hidden]="prixVente.valid" class="alert alert-danger"> Le Prix de vente en € est requis  </div>
+</div>
+
+<input [disabled]="!computerForm.valid" class="btn btn-success" type="submit" id="submitBtn">
+  </form>
+</div>
+

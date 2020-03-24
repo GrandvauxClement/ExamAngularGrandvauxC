@@ -1,0 +1,16 @@
+<div class="card m-auto " style="width: 30rem;" [ngClass]="{'profit':(computer.prixVente - computer.prixAchat)>0, 'deficit':(computer.prixVente - computer.prixAchat)<=0}">
+  <div class="card-body">
+    <h3 class="card-title"> Modèle: <span class="text-danger">{{computer.modele}}</span> </h3>
+    <h3 class="card-title"> Marque: <span class="text-danger">{{computer.marque}} </span></h3>
+    <h3 class="card-title">Type : <span class="text-danger">{{computer.type}} </span></h3>
+    <h3 class="card-title"> Catégorie: <span class="text-danger">{{computer.categorie}} </span></h3>
+    <h3 class="card-title"> Prix Achat: <span class="text-danger">{{computer.prixAchat}} </span></h3>
+    <h3 class="card-title"> Prix Vente: <span class="text-danger">{{computer.prixVente}}</span></h3>
+    <h3 class="card-title">Date d'entré en stock: <span class="text-danger">{{computer.dateEntreStock|date}}</span></h3>
+
+    <h3 class="card-text text-success" *ngIf="(computer.prixVente-computer.prixAchat)>0">Ce PC est rentable (indice de rentabilité sup à 0)</h3>
+    <h3 class="card-text text-warning" *ngIf="(computer.prixVente-computer.prixAchat)<=0">Ce PC n 'est pas rentable, arretez de le vendre ! (indice de rentabilité inf à 0)</h3>
+    <a routerLink="/home" class="card-link">Retour à la page principal</a>
+  </div>
+</div>
+
